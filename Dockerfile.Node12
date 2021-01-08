@@ -1,0 +1,17 @@
+FROM node:12.20.1
+
+LABEL maintainer="Srini Vasudevan <srini85@gmail.com>"
+
+RUN apt-get -y update
+RUN apt-get install -y \ 
+        python3 \
+        python3-pip \
+        python3-setuptools \
+        groff \
+        less \
+    && pip3 install --upgrade pip \
+    && apt-get clean
+RUN pip --no-cache-dir install --upgrade awscli
+VOLUME /root/.aws
+VOLUME /project
+WORKDIR /project
